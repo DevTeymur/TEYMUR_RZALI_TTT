@@ -5,24 +5,28 @@ int main() {
     int i, square;    
     for(i = 0; i < 9; i++) board[ i ] = ' ';
     draw_board();
+    char col;
+    int row;
 
     while(whoWon == ' ') {
        printf("\n%c\n", whoWon);
        if(currentPlayer == 0 || currentPlayer == 1) {
           printf("\nPlayer X\n");    
-          printf("Enter an available square (1..9)");
-          scanf("%d", &square);   
-          if(ask_coord(square, currentPlayer) == 1)  {
+          printf("Enter a column character and row number: ");
+          scanf("%c %d", &col, &row);
+
+          if(ask_coord(coorReturn(col, row), currentPlayer) == 1)  {
             currentPlayer = 1;
           } else {
             currentPlayer = 2;
           }
+          
        } else {
           printf("\nPlayer 0\n");
-          printf("Enter an available square (1..9)");
-          scanf("%d", &square);   
+          printf("Enter a column character and row number: ");
+          scanf("%c %d", &col, &row);
 
-          if(ask_coord(square, currentPlayer) == 1)  {
+          if(ask_coord(coorReturn(col, row), currentPlayer) == 1)  {
             currentPlayer = 2;
    
           } else {
@@ -31,7 +35,7 @@ int main() {
        } 
        draw_board();
        check();
-    }//end for loop
+    }
 
    return (0);
 }
